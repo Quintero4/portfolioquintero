@@ -1,0 +1,420 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --main-font: 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+body {  
+    cursor: url('images/cursor.png'), auto!important;
+} 
+header {
+    width: 100%;
+    background: red;
+    padding: 1rem 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Estilo para el contenedor de imágenes de fondo */
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+}
+
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/fondo.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    transition: opacity 0.5s ease;
+}
+
+.background-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/fondo2.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* Área sensible al hover en el centro */
+.hover-area {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px; /* Ajusta el tamaño del área sensible */
+    height: 200px;
+    z-index: -1;
+}
+
+.hover-area:hover + .background-container .background-hover {
+    opacity: 1;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Contenedor de íconos sociales */
+.details-content .social-links {
+    display: flex; /* Usa Flexbox */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    gap: 20px; /* Espaciado entre los íconos */
+    margin-top: 20px; /* Espaciado con el contenido superior */
+}
+
+/* Estilos generales para los íconos */
+.details-content .social-links a {
+    font-size: 2rem; /* Tamaño de los íconos */
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 50%; /* Hace que los íconos tengan forma circular */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Colores específicos para cada red social */
+.details-content .social-links a .fa-linkedin {
+    color: #0077b5; /* Azul para LinkedIn */
+}
+.details-content .social-links a .fa-instagram {
+    color: #e4405f; /* Rojo para Instagram */
+}
+.details-content .social-links a .fa-whatsapp {
+    color: #25d366; /* Verde para WhatsApp */
+}
+
+/* Efecto hover para los íconos */
+.details-content .social-links a:hover {
+    transform: scale(1.1); /* Amplía ligeramente al pasar el mouse */
+    background-color: rgba(0, 0, 0, 0.1); /* Fondo sutil al hacer hover */
+}
+
+
+
+.typewriter {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.2rem;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid #333;
+    animation: blink-caret 0.7s step-end infinite;
+}
+
+@keyframes blink-caret {
+    from, to {
+        border-color: transparent;
+    }
+    50% {
+        border-color: #333;
+    }
+}
+
+/* Estilos generales */
+.about-section {
+    text-align: center;
+    padding: 20px;
+}
+
+.expandable-container {
+    position: relative;
+    width: 80%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Cuadro expandible */
+.hover-expand {
+    position: relative;
+    border: none; /* Eliminar bordes */
+    margin: 0; /* Eliminar márgenes */
+    padding: 0; /* Eliminar relleno interno */
+    background: none; /* Asegúrate de que no haya fondo */
+    max-height: 60px;
+    overflow: hidden;
+    transition: max-height 0.5s ease, background-color 0.3s ease;
+    text-align: center;
+    width: 100%; /* Asegurar que ocupa todo el ancho */
+    height: auto; /* Ajustar a contenido expandible */
+    box-shadow: none; /* Eliminar sombras externas */
+}
+
+
+/* Texto inicial dentro del cuadro */
+.static-title {
+    font-size: 1.5rem;
+    color: #333;
+    transition: opacity 0.5s ease;
+    position: relative;
+    z-index: 1;
+    opacity: 1;
+}
+
+/* Ocultar el texto "¿Quién soy?" al pasar el ratón */
+.hover-expand:hover .static-title {
+    opacity: 0;
+    transition: opacity 0.5s ease;  
+}
+
+/* Contenido expandible */
+.details-content {
+    position: relative; /* Posicionamiento relativo para usar correctamente el fondo */
+    color: #fff; /* Texto blanco para contraste */
+    padding: 20px; /* Espaciado interno */
+    background-size: contain; /* La imagen cubrirá todo el cuadro */
+    background-position: center;
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    opacity: 0; /* Oculto inicialmente */
+    transform: translateY(-20px); /* Posición inicial antes de la expansión */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    border-radius: 8px; /* Bordes redondeados */
+    height: 100%; /* Ocupar todo el cuadro expandido */
+    width: 100%; /* Ocupar todo el ancho */
+}
+
+
+/* Mostrar contenido expandible al pasar el ratón */
+.hover-expand:hover {
+    max-height: 400px;
+    background: none;
+    background-color: transparent;
+    opacity: 1; /* Muestra el contenido */
+
+}
+
+.hover-expand:hover .details-content {
+    opacity: 1; /* Hace visible el contenido */
+    transform: translateY(0); /* Restaura la posición */
+    height: auto;
+    min-height: 250px;
+}
+/* Imagen de fondo para el cuadro "¿Quién soy?" */
+.details-content.quien-soy {
+    background-image: url('images/soy.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+    min-height: 250px;
+}
+.hover-expand:hover .details-content.quien-soy h2,
+.hover-expand:hover .details-content.quien-soy p,
+.hover-expand:hover .details-content.quien-soy a {
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 50); /* Sombra negra */
+    color: #fff; /* Asegúrate de que el texto sea visible */
+    transition: text-shadow 0.3s ease, color 0.3s ease; /* Suaviza el cambio */
+}
+
+/* Imagen de fondo para el cuadro "Contacto" */
+.details-content.contacto {
+    background-image: url('images/contacto.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100px;
+    min-height: 250px;
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.hover-expand:hover .details-content.contacto h2,
+.hover-expand:hover .details-content.contacto p,
+.hover-expand:hover .details-content.contacto a {
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 50); /* Sombra negra */
+    color: #fff; /* Asegúrate de que el texto sea visible */
+    transition: text-shadow 0.3s ease, color 0.3s ease; /* Suaviza el cambio */
+    position: relative;
+    z-index: 2;
+}
+
+.hover-expand:hover .details-content {
+    opacity: 1; /* Mostrar el contenido */
+    transform: translateY(0); /* Restaura la posición */
+    height: auto;
+    min-height: 250px;
+}
+/* Estilo general para el contenedor de la imagen */
+.image-container {
+    position: relative;
+    width: 300px; /* Ajusta al tamaño deseado */
+    height: 300px;
+    margin: auto;
+}
+
+/* Imagen principal */
+.main-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s ease;
+    z-index: 1;
+}
+
+/* Imagen que aparece al pasar el ratón */
+.hover-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    z-index: 2;
+    transition: opacity 0.5s ease;
+}
+
+/* Cambiar la imagen cuando el ratón está en el centro */
+.image-container:hover .hover-image {
+    opacity: 1; /* Mostrar la imagen alternativa */
+}
+
+.image-container:hover .main-image {
+    opacity: 0; /* Ocultar la imagen original */
+}
+/* Estilo general para el footer */
+footer {
+    position: fixed; /* Hace que el footer esté siempre visible en la parte inferior */
+    bottom: 0; /* Lo posiciona al borde inferior de la pantalla */
+    width: 100%; /* Ocupa todo el ancho */
+    background-color: transparent; /* Fondo oscuro */
+    color: #fff; /* Texto blanco */
+    text-shadow: 0 0 10px #000000;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center; /* Centra el texto y el contenido */
+    padding: 10px 20px; /* Espaciado interno */
+    box-shadow: 0 -2px 5px transparent; /* Sombra opcional */
+    z-index: 1000; /* Asegura que el footer esté por encima de otros elementos */
+}
+
+
+
+
+
+
+
+/* Estilo para los enlaces sociales dentro del footer */
+footer .social-links {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center; /* Centra los iconos en el footer */
+    gap: 20px; /* Espacio entre los iconos */
+}
+
+footer .social-links a {
+    font-size: 1.5rem; /* Tamaño de los iconos */
+    border-radius: 50%;
+    background-color: #000000;
+    padding: 10px;
+    color: #ffffff; /* Color blanco */
+    text-decoration: none; 
+    justify-content: center;
+}       
+.social-links a i {
+    transition: all 0.3s ease;
+    font-size: 1.5rem; /* Ajusta el tamaño según necesites */
+}
+
+.social-links a:hover i {
+    transform: translateY(-5px) scale(1.2);
+    color: #007bff; /* Color al hacer hover - ajusta según tu diseño */
+}
+
+/* Colores específicos para cada red social al hacer hover */
+.social-links a:hover .fa-github {
+    color: #333;
+}
+
+
+.social-links a:hover .fa-linkedin {
+    color: #0077b5;
+}
+
+.social-links a:hover .fa-envelope {
+    color: #ea4335;
+}
+/* Efecto de sobre abriéndose */
+.fa-envelope-open-transition {
+    transition: all 0.3s ease;
+}
+
+.fa-envelope-open-transition:hover {
+    transform: scale(1.1);
+}
+
+/* Cambiar el ícono al hover */
+.fa-envelope-open-transition:hover::before {
+    content: "\f2b6"; /* Código del ícono de sobre abierto */
+    font-family: "Font Awesome 6 Free";
+}
+/* Estilos para el contenedor de logos */
+.tech-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centra verticalmente los íconos */
+    gap: 20px; /* Espacio entre los íconos */
+    margin-bottom: 20px; /* Espacio entre los logos y el contenido del footer */
+}
+
+/* Estilos para los íconos */
+.tech-logos a {
+    font-size: 2rem; /* Tamaño de los íconos */
+    color: inherit; /* Mantiene el color original */
+    text-decoration: none; /* Elimina el subrayado de los enlaces */
+    transition: transform 0.3s ease; /* Solo animación de escala */
+}
+
+/* Estilos para la imagen del logo de TypeScript */
+.tech-logos a img.tech-logo {
+    width: 32px; /* Ajusta el tamaño del logo */
+    height: 32px;
+    transition: transform 0.3s ease; /* Solo animación de escala */
+}
+
+/* Efecto hover para los íconos */
+.tech-logos a:hover {
+    transform: scale(1.2); /* Amplía ligeramente al pasar el mouse */
+}
+
+/* Colores originales para los íconos */
+.tech-logos .fa-html5 {
+    color: #e34c26; /* Color naranja de HTML5 */
+}
+
+.tech-logos .fa-css3-alt {
+    color: #264de4; /* Color azul de CSS3 */
+}
+
+.tech-logos .fa-php {
+    color: #777bb4; /* Color morado de PHP */
+}
+
+.tech-logos img.tech-logo {
+    filter: none; /* Mantiene el color original del logo de TypeScript */
+}
